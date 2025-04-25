@@ -1,0 +1,14 @@
+.loadMoreBtn {
+  margin-top: 10px;
+  margin-left: 100px;
+  padding: 8px 12px;
+  border: none;
+  background-color: goldenrod;
+  color: #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.loadMoreBtn:hover {
+  background-color: blueviolet;
+}

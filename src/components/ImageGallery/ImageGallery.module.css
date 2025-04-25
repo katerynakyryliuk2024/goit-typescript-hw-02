@@ -1,0 +1,13 @@
+.list {
+  margin-top: 25px;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  object-fit: cover;
+}

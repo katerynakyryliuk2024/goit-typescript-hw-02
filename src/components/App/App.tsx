@@ -7,13 +7,9 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 
-interface Photo {
+export interface Photo {
   urls: string;
   description: string;
-}
-
-interface PhotosResultsResponse {
-  results: Photo[];
 }
 
 export default function App() {
@@ -52,10 +48,7 @@ export default function App() {
       try {
         setError(false);
         setİsloading(true);
-        const data: PhotosResultsResponse = await fetchPhotos(
-          searchTerm.split("/")[0],
-          page
-        );
+        const data = await fetchPhotos(searchTerm.split("/")[0], page);
         console.log(data);
         setPhotos((prevPhotos) => {
           return [...prevPhotos, ...data];

@@ -1,19 +1,28 @@
 import css from "./SearchBar.module.css";
-import { Formik, Field, Form } from "formik";
+import { Formik, Field, Form, FormikHelpers } from "formik";
 import toast, { Toaster } from "react-hot-toast";
 
 interface SearchBarProps {
   onSearch: (topic: string) => void;
 }
 
+interface SearchBarFormValues {
+  info: string;
+}
+
+const initialValues: SearchBarFormValues = {
+  info: "",
+};
+
 export default function SearchBar({ onSearch }: SearchBarProps) {
   return (
     <header>
       <Formik
-        initialValues={{
-          info: "",
-        }}
-        onSubmit={(values, actions) => {
+        initialValues={initialValues}
+        onSubmit={(
+          values: SearchBarFormValues,
+          actions: FormikHelpers<SearchBarFormValues>
+        ) => {
           if (!values.info.trim()) {
             toast.error("please full fill some searching info");
             return;

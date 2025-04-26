@@ -7,16 +7,25 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 
-export default function App() {
-  const [photos, setPhotos] = useState([]);
-  const [isLoading, setİsloading] = useState(false);
-  const [error, setError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [modalİsOpen, setModalİsOpen] = useState(false);
-  const [selectedİmage, setSelectedİmage] = useState(null);
+interface Photo {
+  urls: string;
+  description: string;
+}
 
-  const handleSearch = async (topic) => {
+interface PhotosResultsResponse {
+  results: Photo[];
+}
+
+export default function App() {
+  const [photos, setPhotos] = useState<Photo[]>([]);
+  const [isLoading, setİsloading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [modalİsOpen, setModalİsOpen] = useState<boolean>(false);
+  const [selectedİmage, setSelectedİmage] = useState<number>(0);
+
+  const handleSearch = async (topic: string) => {
     setSearchTerm(`${topic}/${Date.now()}`);
 
     setPage(1);
@@ -26,7 +35,7 @@ export default function App() {
   const handleClick = () => {
     setPage(page + 1);
   };
-  const openModal = (item) => {
+  const openModal = (item: number) => {
     setSelectedİmage(item);
     setModalİsOpen(true);
   };
@@ -43,7 +52,11 @@ export default function App() {
       try {
         setError(false);
         setİsloading(true);
-        const data = await fetchPhotos(searchTerm.split("/")[0], page);
+        const data: PhotosResultsResponse = await fetchPhotos(
+          searchTerm.split("/")[0],
+          page
+        );
+        console.log(data);
         setPhotos((prevPhotos) => {
           return [...prevPhotos, ...data];
         });

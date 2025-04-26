@@ -4,7 +4,7 @@ import { Photo } from "../App/App";
 
 interface ImageGalleryProps {
   items: Photo[];
-  onImageClick: (item: number) => void;
+  onImageClick: (item: Photo) => void;
 }
 
 export default function ImageGallery({

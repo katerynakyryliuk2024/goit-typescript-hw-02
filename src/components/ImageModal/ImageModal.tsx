@@ -1,4 +1,5 @@
 import Modal from "react-modal";
+import { Photo } from "../App/App";
 
 Modal.setAppElement("#root");
 
@@ -17,7 +18,17 @@ const modalStyles = {
   },
 };
 
-export default function ImageModal({ isOpen, onClose, image }) {
+interface ImageModalProps {
+  image: Photo;
+  isOpen: () => boolean;
+  onClose: () => void;
+}
+
+export default function ImageModal({
+  isOpen,
+  onClose,
+  image,
+}: ImageModalProps) {
   return (
     <Modal isOpen={isOpen} onRequestClose={onClose} style={modalStyles}>
       <button onClick={onClose} style={{ float: "right" }}>

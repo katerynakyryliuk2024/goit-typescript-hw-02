@@ -5,15 +5,15 @@ interface Photo {
   description: string;
 }
 
-// interface PhotosResultsResponse {
-//   results: Photo[];
-// }
+interface PhotosResultsResponse {
+  results: Photo[];
+}
 
 export const fetchPhotos = async (
   topic: string,
   currentPage: number
 ): Promise<Photo[]> => {
-  const response = await axios.get<Photo[]>(
+  const response = await axios.get<PhotosResultsResponse>(
     `https://api.unsplash.com/search/photos?client_id=SDdus_L-2oATcnD6jLgUwbLq6gPjNKxLCEuAo_e6nIA`,
     {
       params: {

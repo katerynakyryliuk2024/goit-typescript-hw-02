@@ -7,9 +7,15 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 
+interface UrlsPhoto {
+  regular: string;
+  small: string;
+}
+
 export interface Photo {
-  urls: string;
+  urls: UrlsPhoto[];
   description: string;
+  id: string;
 }
 
 export default function App() {
@@ -19,7 +25,7 @@ export default function App() {
   const [page, setPage] = useState<number>(1);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [modalİsOpen, setModalİsOpen] = useState<boolean>(false);
-  const [selectedİmage, setSelectedİmage] = useState<number>(0);
+  const [selectedİmage, setSelectedİmage] = useState<Photo>({});
 
   const handleSearch = async (topic: string) => {
     setSearchTerm(`${topic}/${Date.now()}`);
@@ -31,7 +37,7 @@ export default function App() {
   const handleClick = () => {
     setPage(page + 1);
   };
-  const openModal = (item: number) => {
+  const openModal = (item: Photo) => {
     setSelectedİmage(item);
     setModalİsOpen(true);
   };

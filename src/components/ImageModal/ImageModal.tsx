@@ -19,8 +19,8 @@ const modalStyles = {
 };
 
 interface ImageModalProps {
-  image: Photo;
-  isOpen: () => boolean;
+  image: Photo | null;
+  isOpen: boolean;
   onClose: () => void;
 }
 

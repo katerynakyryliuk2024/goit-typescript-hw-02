@@ -13,7 +13,7 @@ interface UrlsPhoto {
 }
 
 export interface Photo {
-  urls: UrlsPhoto[];
+  urls: UrlsPhoto;
   description: string;
   id: string;
 }
@@ -81,11 +81,13 @@ export default function App() {
         <ImageGallery items={photos} onImageClick={openModal} />
       )}
 
-      <ImageModal
-        isOpen={modalİsOpen}
-        onClose={closeModal}
-        image={selectedİmage}
-      />
+      {selectedİmage !== null && (
+        <ImageModal
+          isOpen={modalİsOpen}
+          onClose={closeModal}
+          image={selectedİmage}
+        />
+      )}
 
       {isLoading && <Loader />}
 

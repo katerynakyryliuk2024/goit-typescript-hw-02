@@ -1,9 +1,5 @@
 import axios from "axios";
-
-interface Photo {
-  urls: string;
-  description: string;
-}
+import { Photo } from "./App/App";
 
 interface PhotosResultsResponse {
   results: Photo[];

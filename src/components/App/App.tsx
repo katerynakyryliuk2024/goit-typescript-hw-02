@@ -18,6 +18,10 @@ export interface Photo {
   id: string;
 }
 
+interface PhotosResultsResponse {
+  results: Photo[];
+}
+
 export default function App() {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [isLoading, setİsloading] = useState<boolean>(false);
@@ -25,7 +29,7 @@ export default function App() {
   const [page, setPage] = useState<number>(1);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [modalİsOpen, setModalİsOpen] = useState<boolean>(false);
-  const [selectedİmage, setSelectedİmage] = useState<Photo>({});
+  const [selectedİmage, setSelectedİmage] = useState<Photo | null>(null);
 
   const handleSearch = async (topic: string) => {
     setSearchTerm(`${topic}/${Date.now()}`);
